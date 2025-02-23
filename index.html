@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body >
+    <button id="showMapBtn" onclick="toggleMap(true)">Show Map</button>
+    <div id="mapContainer">
+        <button id="closeMapBtn" onclick="toggleMap(false)">X</button>
+        <img src="map.jpg" alt="Treasure Hunt Map">
+    </div>
+    <div class="container">
+        <h1>Treasure Hunt Game</h1>
+        <div id="registration">
+            <input type="text" id="name" placeholder="Enter your name" maxlength="25">
+            <input type="text" id="username" placeholder="Choose a unique username" maxlength="25">
+            <button onclick="registerUser()">Register</button>
+        </div>
+        
+        <div id="game" class="hidden">
+            <h2 id="hint">Your hint will appear here</h2>
+            <input type="text" id="answer" placeholder="Enter your answer" maxlength="25">
+            <button onclick="submitAnswer()">Submit</button>
+            <p id="feedback"></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        function toggleMap(show) {
+            const mapContainer = document.getElementById('mapContainer');
+            mapContainer.style.visibility = show ? 'visible' : 'hidden';
+        }
+    </script>
+</body>
+</html>
