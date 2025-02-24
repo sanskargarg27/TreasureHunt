@@ -6,25 +6,32 @@
     <title>Treasure Hunt Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body >
+<body>
     <button id="showMapBtn" onclick="toggleMap(true)">Show Map</button>
     <div id="mapContainer">
         <button id="closeMapBtn" onclick="toggleMap(false)">X</button>
         <img src="map.jpg" alt="Treasure Hunt Map">
     </div>
     <div class="container">
-        <h1>Treasure Hunt Game</h1>
+        <h1 id = "heading">Treasure Hunt Game</h1>
         <div id="registration">
-            <input type="text" id="name" placeholder="Enter your name" maxlength="25">
-            <input type="text" id="username" placeholder="Choose a unique username" maxlength="25">
+            <input type="text" id="TeamName" placeholder="Enter your Team Name" maxlength="30">
             <button onclick="registerUser()">Register</button>
         </div>
+
         
-        <div id="game" class="hidden">
+        <div id="game"  class="hidden">
             <h2 id="hint">Your hint will appear here</h2>
             <input type="text" id="answer" placeholder="Enter your answer" maxlength="25">
             <button onclick="submitAnswer()">Submit</button>
             <p id="feedback"></p>
+        </div>
+
+        <div id="encryptedSection" class="hidden">
+            <h2>Encrypted Message:</h2>
+            <p id="encryptedMessage"></p>
+            <button id="copyBtn" onclick="copyEncryptedMessage()">Copy Encryption</button>
+            <h3>Kindly share your TeamName and the encryoted message to 1234567890</h3>
         </div>
     </div>
     
@@ -33,6 +40,16 @@
         function toggleMap(show) {
             const mapContainer = document.getElementById('mapContainer');
             mapContainer.style.visibility = show ? 'visible' : 'hidden';
+        }
+
+        function copyEncryptedMessage() {
+            const encryptedMessage = document.getElementById("encryptedMessage").textContent;
+            // copy to clipboard
+            navigator.clipboard.writeText(encryptedMessage);
+            console.log(encryptedMessage);
+            alert("Encrypted message copied to clipboard");
+            const decryptedMessage = decryptMessage(encryptedMessage);
+            console.log(decryptedMessage);
         }
     </script>
 </body>
