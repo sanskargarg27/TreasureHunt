@@ -4,7 +4,7 @@ let correctAnswers = 0; // Track the number of correct answers
 let teamName = "";
 
 const hints = [
-    "A warrior in history, brave and grand\nYet in my blood, a curse did stand\n.A show of romance, a Briderton series,\nAn actress fierce, on a trip to Paris.\nGuess me if you can!",
+    "A warrior in history, brave and grand\nYet in my blood, a curse did stand\n.A show of romance, a Briderton series,\nAn actress fierce, on a trip to Paris.\nGuess me if you can! demo",
     "She has two Nobels to her name,\nbrought two elements into the game.\nShe unveiled a force both boon and bane,\nThere's also a biscuit in her name.\nWho is she?",
     "You live if you are fit,\nI said so, that's it.\nWho am I?",
     "Khud Mahadev ka vaas hai jahan\nMeghnath ke teer ka ilaaj bhi hai wahan\nWahan hai sabse unchi choti\nInsan to kya wahan ki mitti tak nahin hai khoti.\nBatao kaha?",
