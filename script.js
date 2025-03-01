@@ -5,7 +5,7 @@ let teamName = "";
 
 const hints = [
     "A warrior in history, brave and grand\nYet in my blood, a curse did stand\n.A show of romance, a Briderton series,\nAn actress fierce, on a trip to Paris.\nGuess me if you can!",
-    "She has two Nobels to her name,\nbrought two elements into the game.\nShe unveiled a force both boon and bane,\nThere's also a biscuit in her name.\nWho is she?",
+    "She has two Nobels to her name,\nbrought two elements into the game.\nShe unveiled a force both boon and bane,\nThere's also a biscuit in her name.\nWho is she?\n(2 Words answer)",
     "You live if you are fit,\nI said so, that's it.\nWho am I?",
     "Khud Mahadev ka vaas hai jahan\nMeghnath ke teer ka ilaaj bhi hai wahan\nWahan hai sabse unchi choti\nInsan to kya wahan ki mitti tak nahin hai khoti.\nBatao kaha?",
     "Simplicity   Curiosity\nEthnicity    Adversity\nSeen in some, heard in all,\nSpot me if you can!",
@@ -57,10 +57,22 @@ function registerUser() {
 }
 
 function submitAnswer() {
-    const answer = document.getElementById('answer').value.toLowerCase();
+    const answer = document.getElementById('answer').value.trim();
     const feedback = document.getElementById('feedback');
+    const correctAnswer = correctAnswersList[currentHintIndex];
     
-    if (answer === correctAnswersList[currentHintIndex].toLowerCase()) {
+    // Split input and correct answer into words
+    const answerWords = answer.split(/\s+/);
+    const correctAnswerWords = correctAnswer.split(/\s+/);
+    
+    // Check if the number of words is different
+    if (answerWords.length !== correctAnswerWords.length) {
+        feedback.textContent = "Invalid attempt! Ensure your answer has the correct number of words.";
+        feedback.style.color = "orange";
+        return; // Do not count this as an attempt
+    }
+    
+    if (answer.toLowerCase() === correctAnswer.toLowerCase()) {
         // Answer is correct
         correctAnswers++;
         currentHintIndex++;
@@ -72,9 +84,8 @@ function submitAnswer() {
             feedback.style.color = "green";
             currentRetries = 0; // Reset retry count for the next hint
         } else {
-
             let inputString = `${teamName}:${correctAnswers}`;
-            const encryptedMessage =    encryptMessage(inputString);
+            const encryptedMessage = encryptMessage(inputString);
             document.getElementById('heading').textContent = "That's all folks!";
             document.getElementById('encryptedMessage').textContent = encryptedMessage;
             document.getElementById('game').classList.add('hidden');
@@ -100,7 +111,7 @@ function submitAnswer() {
                 feedback.style.color = "orange";
             } else {
                 let inputString = `${teamName}:${correctAnswers}`;
-                const encryptedMessage =    encryptMessage(inputString);
+                const encryptedMessage = encryptMessage(inputString);
                 document.getElementById('heading').textContent = "That's all folks!";
                 document.getElementById('encryptedMessage').textContent = encryptedMessage;
                 document.getElementById('game').classList.add('hidden');
