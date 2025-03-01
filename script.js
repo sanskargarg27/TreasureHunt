@@ -17,7 +17,7 @@ const hints = [
 ];
 
 const hashedAnswersList = [
-    "d95e4c65e7a88eb9e5e68edb0219a2f4f6c1a8f963c3f12a3b8f7b8ea9d4b7f4", // QUEEN
+    "f9b67545230b5cc7b9d784b5b85885acf9b2681165a3bddbf964a3bc4bac20dd", // QUEEN
     "4a44dc15364204a80fe80e9039455cc1c3d1345e3dfc94c26a05b3b7b78d2012", // MARIE CURIE
     "e38ad214943daad1d64c102faec29de4afe9da3d902c3dc61d13568c4c04f4d9", // DARWIN
     "e1ff697b0dc267dacb6935b0fc2265511fa6b860d3920f435f0a24363637fc73", // HIMALAYA
@@ -67,6 +67,11 @@ async function submitAnswer() {
     const answer = document.getElementById('answer').value;
     const feedback = document.getElementById('feedback');
     const hashedUserAnswer = await hashAnswer(answer);
+
+    console.log("User input:", answer);
+    console.log("User hashed input:", hashedUserAnswer);
+    console.log("Expected hash:", hashedAnswersList[currentHintIndex]);
+
     
     if (hashedUserAnswer === hashedAnswersList[currentHintIndex]) {
         correctAnswers++;
