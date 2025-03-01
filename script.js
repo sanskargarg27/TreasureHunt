@@ -64,7 +64,7 @@ function registerUser() {
 }
 
 async function submitAnswer() {
-    const answer = document.getElementById('answer').value.toUpperCase();
+    const answer = document.getElementById('answer').value;
     const feedback = document.getElementById('feedback');
     const hashedUserAnswer = await hashAnswer(answer);
     
