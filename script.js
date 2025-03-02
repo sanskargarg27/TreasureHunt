@@ -16,18 +16,7 @@ const hints = [
     "You are here for a reason,\nSince I'm in season.\nI'm the fierce woman power,\nIt's me who holds this hour."
 ];
 
-const correctAnswersList = [
-    "QUEEN",
-    "MARIE CURIE",
-    "DARWIN",
-    "HIMALAYA",
-    "CITY",
-    "APPLE",
-    "PISCES",
-    "DRAGON",
-    "PEACE",
-    "AVYANNA"
-];
+
 
 const QuestionNames = [
     "THE QUEEN'S GATE ",
@@ -42,7 +31,52 @@ const QuestionNames = [
     "JUBILEE ARENA "
 ];
 
-let key = "This Is a Really Rudementary website. Not that good, but works for the purpose";
+function stringToBase(inputString) {
+    const base27 = [];
+    for (let i = 0; i < inputString.length; i++) {
+        const char = inputString[i].toLowerCase();  // Convert to lowercase
+        if (char >= 'a' && char <= 'z') {  // Ensure the character is a letter
+            base27.push(char.charCodeAt(0) - 'a'.charCodeAt(0));  // 'a' -> 0, 'b' -> 1, ..., 'z' -> 25
+        }
+        else if (char === ' ') {  // Space character
+            base27.push(26);  // 26 represents space
+        }
+        else {
+            throw new Error("String must only contain alphabetic characters.");
+        }
+    }
+    return base27;
+}
+
+// Function to convert base 27 back to string
+function baseToString(base27List) {
+    let resultString = '';
+    for (let i = 0; i < base27List.length; i++) {
+        const num = base27List[i];
+        if (num >= 0 && num <= 25) {  // Valid base 27 range for a-z
+            resultString += String.fromCharCode(num + 'a'.charCodeAt(0));  // Convert number back to letter
+        }
+        else if (num === 26) {  // Space character
+            resultString += ' ';
+        } 
+        else {
+            throw new Error("Base 27 values must be between 0 and 25.");
+        }
+    }
+    return resultString;
+}
+
+const correctEncAnswersList = [[16, 20, 4, 4, 13], [12, 0, 17, 8, 4, 26, 2, 20, 17, 8, 4], [3, 0, 17, 22, 8, 13], [7, 8, 12, 0, 11, 0, 24, 0], [2, 8, 19, 24], [0, 15, 15, 11, 4], [15, 8, 18, 2, 4, 18], [3, 17, 0, 6, 14, 13], [15, 4, 0, 2, 4], [0, 21, 24, 0, 13, 13, 0]];
+
+let correctAnswersList = [];
+for (let i = 0; i < correctEncAnswersList.length; i++) {
+    correctAnswersList.push(baseToString(correctEncAnswersList[i]));
+}
+
+
+let key = [19, 7, 8, 18, 26, 8, 18, 26, 0, 26, 17, 4, 0, 11, 11, 24, 26, 17, 20, 3, 4, 12, 4, 13, 19, 0, 17, 24, 26, 22, 4, 1, 18, 8, 19, 4, 26, 13, 14, 19, 26, 19, 7, 0, 19, 26, 6, 14, 14, 3, 26, 1, 20, 19, 26, 22, 14, 17, 10, 18, 26, 5, 14, 17, 26, 19, 7, 4, 26, 15, 20, 17, 15, 14, 18, 4];
+
+key = baseToString(key);
 function registerUser() {
     const teamname = document.getElementById('TeamName').value;
     teamName = teamname;
@@ -59,7 +93,8 @@ function registerUser() {
 function submitAnswer() {
     const answer = document.getElementById('answer').value.toLowerCase();
     const feedback = document.getElementById('feedback');
-    
+    // currentAnswer = baseToString(correctEncAnswersList[currentHintIndex]);
+    // console.log(answer, correctAnswersList[currentHintIndex],currentAnswer, currentHintIndex, correctAnswersList.length);
     if (answer === correctAnswersList[currentHintIndex].toLowerCase()) {
         // Answer is correct
         correctAnswers++;
