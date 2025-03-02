@@ -114,7 +114,7 @@ function submitAnswer() {
             document.getElementById('hint').textContent = hints[currentHintIndex];
             document.getElementById('heading').textContent = QuestionNames[currentHintIndex];
             document.getElementById('answer').value = "";
-            feedback.textContent = "Correct! Moving to the next hint.";
+            feedback.textContent = "Moving to the next hint.";
             feedback.style.color = "green";
             currentRetries = 0; // Reset retry count for the next hint
         } else {
@@ -124,14 +124,14 @@ function submitAnswer() {
             document.getElementById('encryptedMessage').textContent = encryptedMessage;
             document.getElementById('game').classList.add('hidden');
             document.getElementById('encryptedSection').classList.remove('hidden');
-            feedback.textContent = "Congratulations! You've completed the game.";
+            feedback.textContent = "Game over. Here's your encrypted message.";
             feedback.style.color = "blue";
         }
     } else {
         // Answer is incorrect
         if (currentRetries < 2) {
             currentRetries++;
-            feedback.textContent = `Wrong answer. Try again. You have ${3 - currentRetries} retries left.`;
+            feedback.textContent = `Try again. You have ${3 - currentRetries} retries left.`;
             feedback.style.color = "red";
         } else {
             // Out of retries, move to the next hint
@@ -141,7 +141,7 @@ function submitAnswer() {
                 document.getElementById('hint').textContent = hints[currentHintIndex];
                 document.getElementById('heading').textContent = QuestionNames[currentHintIndex];
                 document.getElementById('answer').value = "";
-                feedback.textContent = "No retries left. Moving to the next hint.";
+                feedback.textContent = "Moving to the next hint.";
                 feedback.style.color = "orange";
             } else {
                 let inputString = `${teamName}:${correctAnswers}`;
